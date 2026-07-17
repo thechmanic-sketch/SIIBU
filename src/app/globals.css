@@ -29,3 +29,49 @@ body.cursor-none,
 body.cursor-none * {
   cursor: none !important;
 }
+
+@keyframes preloader-sweep-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+  }
+}
+
+@keyframes preloader-sweep-glow-move {
+  0% {
+    left: -10%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.preloader-sweep-text {
+  animation-name: preloader-sweep-reveal;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  animation-fill-mode: forwards;
+}
+
+.preloader-sweep-glow {
+  animation-name: preloader-sweep-glow-move;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  animation-fill-mode: forwards;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+  filter: blur(6px);
+  mix-blend-mode: screen;
+}
