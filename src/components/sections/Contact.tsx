@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ARTIST_NAME } from "@/lib/site-data";
+import SplitReveal from "@/components/SplitReveal";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -10,7 +11,9 @@ export default function Contact() {
   return (
     <section id="contact" className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
       <span className="text-xs tracking-[0.4em] text-white/50 uppercase">08 — Contact</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Get in touch</h2>
+      <SplitReveal as="h2" className="mt-2 text-3xl font-semibold sm:text-5xl">
+        Get in touch
+      </SplitReveal>
 
       <div className="mt-12 grid gap-16 md:grid-cols-2">
         <form

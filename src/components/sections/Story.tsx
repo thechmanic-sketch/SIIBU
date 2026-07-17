@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsap";
 import { TIMELINE } from "@/lib/site-data";
-
-gsap.registerPlugin(ScrollTrigger);
+import SplitReveal from "@/components/SplitReveal";
 
 export default function Story() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,7 +37,9 @@ export default function Story() {
   return (
     <section id="story" ref={containerRef} className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
       <span className="text-xs tracking-[0.4em] text-white/50 uppercase">04 — Story</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Biography</h2>
+      <SplitReveal as="h2" className="mt-2 text-3xl font-semibold sm:text-5xl">
+        Biography
+      </SplitReveal>
 
       <div className="relative mt-16 max-w-2xl">
         <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/15" />

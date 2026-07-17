@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { gsap, EXPO_OUT } from "@/lib/gsap";
 import { ARTWORKS } from "@/lib/site-data";
 
 const FILTERS = ["all", "painting", "photography", "design"] as const;
@@ -10,9 +11,38 @@ type Filter = (typeof FILTERS)[number];
 export default function ArtGallery() {
   const [filter, setFilter] = useState<Filter>("all");
   const [selected, setSelected] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const items = ARTWORKS.filter((a) => filter === "all" || a.category === filter);
   const active = ARTWORKS.find((a) => a.id === selected);
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const ctx = gsap.context(() => {
+      const cards = grid.querySelectorAll(".gallery-card");
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.4,
+          ease: EXPO_OUT,
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: grid,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, grid);
+
+    return () => ctx.revert();
+  }, [filter]);
 
   return (
     <section id="gallery" className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
@@ -33,18 +63,29 @@ export default function ArtGallery() {
         ))}
       </div>
 
-      <motion.div layout className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <motion.div
+        layout
+        ref={gridRef}
+        className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3"
+      >
         <AnimatePresence>
           {items.map((art) => (
             <motion.button
               key={art.id}
               layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.35 }}
               onClick={() => setSelected(art.id)}
-              className="group relative aspect-[4/5] overflow-hidden rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900"
+              onMouseEnter={() => setHovered(art.id)}
+              onMouseLeave={() => setHovered(null)}
+              style={{
+                transition: "transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s linear",
+                transform:
+                  hovered === art.id
+                    ? "scale(1.04) rotate(-1deg)"
+                    : "scale(1) rotate(0deg)",
+                opacity: hovered !== null && hovered !== art.id ? 0.4 : 1,
+              }}
+              className="gallery-card group relative aspect-[4/5] overflow-hidden rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900"
             >
               <span className="absolute bottom-3 left-3 text-xs tracking-wide text-white/70 opacity-0 transition group-hover:opacity-100">
                 {art.title}

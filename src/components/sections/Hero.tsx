@@ -1,11 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "@/lib/gsap";
 import { ARTIST_NAME } from "@/lib/site-data";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [muted, setMuted] = useState(true);
 
   function toggleSound() {
@@ -15,16 +17,42 @@ export default function Hero() {
     setMuted(video.muted);
   }
 
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        video,
+        { yPercent: -10 },
+        {
+          yPercent: 10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   const letters = ARTIST_NAME.split("");
 
   return (
     <section
       id="hero"
+      ref={sectionRef}
       className="relative h-screen w-full overflow-hidden bg-black"
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover opacity-60"
+        className="absolute inset-[-10%] h-[120%] w-full object-cover opacity-60"
         src="/video/hero-loop.mp4"
         autoPlay
         loop
