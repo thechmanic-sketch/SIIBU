@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap, EXPO_OUT } from "@/lib/gsap";
 import { ARTWORKS, paletteFor } from "@/lib/site-data";
+import MediaImage from "@/components/MediaImage";
 
 const FILTERS = ["all", "painting", "photography", "design"] as const;
 type Filter = (typeof FILTERS)[number];
@@ -89,8 +90,13 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
                     : "scale(1) rotate(0deg)",
                 opacity: hovered !== null && hovered !== art.id ? 0.4 : 1,
               }}
-              className={`gallery-card group relative aspect-[4/5] overflow-hidden rounded-md bg-gradient-to-br ${paletteFor(i)}`}
+              className="gallery-card group relative aspect-[4/5] overflow-hidden rounded-md"
             >
+              <MediaImage
+                src={art.image}
+                alt={art.title}
+                fallbackClassName={`h-full w-full bg-gradient-to-br ${paletteFor(i)}`}
+              />
               <span className="absolute left-3 top-3 text-[10px] uppercase tracking-widest text-white/40">
                 {art.category}
               </span>
@@ -117,7 +123,13 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
               exit={{ scale: 0.9, opacity: 0 }}
               className="max-h-[80vh] w-full max-w-2xl rounded-md bg-neutral-900 p-1"
             >
-              <div className={`aspect-[4/5] w-full rounded-sm bg-gradient-to-br ${paletteFor(ARTWORKS.indexOf(active))}`} />
+              <div className="aspect-[4/5] w-full overflow-hidden rounded-sm">
+                <MediaImage
+                  src={active.image}
+                  alt={active.title}
+                  fallbackClassName={`h-full w-full bg-gradient-to-br ${paletteFor(ARTWORKS.indexOf(active))}`}
+                />
+              </div>
               <div className="p-4">
                 <p className="text-sm text-white/90">{active.title}</p>
                 <p className="mt-1 text-xs uppercase tracking-widest text-white/40">{active.category}</p>

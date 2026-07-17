@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PRODUCTS, paletteFor } from "@/lib/site-data";
+import MediaImage from "@/components/MediaImage";
 
 export default function Shop({ showHeading = true }: { showHeading?: boolean }) {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -34,7 +35,13 @@ export default function Shop({ showHeading = true }: { showHeading?: boolean }) 
             }}
             className="cursor-pointer"
           >
-            <div className={`aspect-square w-full rounded-md bg-gradient-to-br ${paletteFor(i)}`} />
+            <div className="aspect-square w-full overflow-hidden rounded-md">
+              <MediaImage
+                src={p.image}
+                alt={p.name}
+                fallbackClassName={`h-full w-full bg-gradient-to-br ${paletteFor(i)}`}
+              />
+            </div>
             <p className="mt-3 text-sm">{p.name}</p>
             <p className="text-sm text-white/50">{p.price}</p>
           </motion.div>

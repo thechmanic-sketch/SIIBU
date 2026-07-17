@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { usePlayer } from "@/lib/PlayerContext";
 import { ALBUMS, paletteFor } from "@/lib/site-data";
+import MediaImage from "@/components/MediaImage";
 
 export default function MusicExperience({ showHeading = true }: { showHeading?: boolean }) {
   const [albumIndex, setAlbumIndex] = useState(0);
@@ -40,8 +41,14 @@ export default function MusicExperience({ showHeading = true }: { showHeading?: 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`aspect-square w-full rounded-lg bg-gradient-to-br shadow-2xl ${paletteFor(albumIndex)}`}
-        />
+          className="aspect-square w-full overflow-hidden rounded-lg shadow-2xl"
+        >
+          <MediaImage
+            src={album.cover}
+            alt={album.title}
+            fallbackClassName={`h-full w-full bg-gradient-to-br ${paletteFor(albumIndex)}`}
+          />
+        </motion.div>
 
         <div className="flex flex-col justify-center gap-1">
           {album.tracks.map((track, i) => {
