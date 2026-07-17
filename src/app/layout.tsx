@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import MenuOverlay from "@/components/MenuOverlay";
 import MiniPlayer from "@/components/MiniPlayer";
+import CustomCursor from "@/components/CustomCursor";
 import { PlayerProvider } from "@/lib/PlayerContext";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-black">
         <PlayerProvider>
+          <CustomCursor />
           <MenuOverlay />
           <SmoothScroll>{children}</SmoothScroll>
           <MiniPlayer />
