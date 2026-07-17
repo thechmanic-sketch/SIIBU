@@ -38,6 +38,7 @@ function ArtworkCard({
             color={new THREE.Color().setHSL(index / total, 0.35, 0.35)}
             roughness={0.4}
             metalness={0.1}
+            side={THREE.DoubleSide}
           />
         </mesh>
         <Text
