@@ -12,7 +12,7 @@ export default function StoryPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.story} />
-      <Story />
+      <Story showHeading={false} />
     </main>
   );
 }

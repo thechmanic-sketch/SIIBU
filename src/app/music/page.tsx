@@ -12,7 +12,7 @@ export default function MusicPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.music} />
-      <MusicExperience />
+      <MusicExperience showHeading={false} />
     </main>
   );
 }

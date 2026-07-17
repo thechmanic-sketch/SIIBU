@@ -12,7 +12,7 @@ export default function GalleryPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.gallery} />
-      <ArtGallery />
+      <ArtGallery showHeading={false} />
     </main>
   );
 }

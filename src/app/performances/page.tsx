@@ -12,7 +12,7 @@ export default function PerformancesPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.performances} />
-      <Performances />
+      <Performances showHeading={false} />
     </main>
   );
 }

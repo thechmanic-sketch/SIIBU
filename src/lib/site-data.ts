@@ -26,6 +26,17 @@ export function paletteFor(index: number) {
   return PALETTE[index % PALETTE.length];
 }
 
+export const SECTIONS = [
+  { id: "hero", number: "01", label: "Cinematic Hero" },
+  { id: "universe", number: "02", label: "Visual Universe" },
+  { id: "music", number: "03", label: "Music Experience" },
+  { id: "story", number: "04", label: "Story" },
+  { id: "gallery", number: "05", label: "Art Gallery" },
+  { id: "performances", number: "06", label: "Performances" },
+  { id: "shop", number: "07", label: "Shop" },
+  { id: "contact", number: "08", label: "Contact" },
+] as const;
+
 export const NAV_ITEMS = [
   { href: "/music", number: "01", label: "Music Experience" },
   { href: "/story", number: "02", label: "Story" },

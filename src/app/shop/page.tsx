@@ -12,7 +12,7 @@ export default function ShopPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.shop} />
-      <Shop />
+      <Shop showHeading={false} />
     </main>
   );
 }

@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <main>
       <PageHero {...PAGE_HEROES.contact} />
-      <Contact />
+      <Contact showHeading={false} />
     </main>
   );
 }

@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 import { BIO_LONG, TIMELINE } from "@/lib/site-data";
+import SplitReveal from "@/components/SplitReveal";
 
-export default function Story() {
+export default function Story({ showHeading = true }: { showHeading?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -34,8 +35,17 @@ export default function Story() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
-      <p className="max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
+    <section id="story" ref={containerRef} className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
+      {showHeading && (
+        <>
+          <span className="text-xs tracking-[0.4em] text-white/50 uppercase">04 — Story</span>
+          <SplitReveal as="h2" className="mt-2 text-3xl font-semibold sm:text-5xl">
+            Biography
+          </SplitReveal>
+        </>
+      )}
+
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
         {BIO_LONG}
       </p>
 
