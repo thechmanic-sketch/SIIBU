@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap, EXPO_OUT } from "@/lib/gsap";
 import { ARTIST_NAME, NAV_ITEMS } from "@/lib/site-data";
@@ -69,7 +70,7 @@ export default function MenuOverlay() {
             <ul ref={listRef} className="flex flex-col gap-1">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href} className="overflow-hidden">
-                  <a
+                  <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className="menu-item group flex items-baseline gap-6 border-b border-white/10 py-4 sm:py-5"
@@ -78,7 +79,7 @@ export default function MenuOverlay() {
                     <span className="text-3xl font-medium transition-transform duration-300 group-hover:translate-x-2 sm:text-5xl">
                       {item.label}
                     </span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
