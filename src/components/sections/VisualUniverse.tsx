@@ -2,19 +2,17 @@
 
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Float, OrbitControls, Text } from "@react-three/drei";
+import { Environment, Float, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { ARTWORKS } from "@/lib/site-data";
 
 function ArtworkCard({
   index,
   total,
-  title,
   onRef,
 }: {
   index: number;
   total: number;
-  title: string;
   onRef: (el: THREE.Group | null) => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -41,15 +39,6 @@ function ArtworkCard({
             side={THREE.DoubleSide}
           />
         </mesh>
-        <Text
-          position={[0, -1.25, 0]}
-          fontSize={0.14}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-        >
-          {title}
-        </Text>
       </group>
     </Float>
   );
@@ -98,7 +87,6 @@ function Scene() {
             key={art.id}
             index={i}
             total={ARTWORKS.length}
-            title={art.title}
             onRef={(el) => {
               cardRefs.current[i] = el;
             }}
