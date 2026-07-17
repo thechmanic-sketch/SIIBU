@@ -35,6 +35,15 @@ export default function MenuOverlay() {
 
   return (
     <>
+      <Link
+        href="/"
+        onClick={() => setOpen(false)}
+        aria-label={`${ARTIST_NAME} — Home`}
+        className="fixed left-6 top-6 z-50 text-sm font-semibold tracking-[0.3em] text-white uppercase mix-blend-difference"
+      >
+        {ARTIST_NAME}
+      </Link>
+
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
