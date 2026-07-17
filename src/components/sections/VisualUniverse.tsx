@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { ARTWORKS } from "@/lib/site-data";
@@ -10,30 +10,32 @@ function ArtworkCard({
   index,
   total,
   title,
+  onRef,
 }: {
   index: number;
   total: number;
   title: string;
+  onRef: (el: THREE.Group | null) => void;
 }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<THREE.Mesh>(null);
   const angle = (index / total) * Math.PI * 2;
   const radius = 4.2;
   const x = Math.cos(angle) * radius;
   const z = Math.sin(angle) * radius;
 
   useFrame(({ clock }) => {
-    if (!ref.current) return;
-    ref.current.lookAt(0, 0, 0);
-    ref.current.position.y = Math.sin(clock.elapsedTime * 0.6 + index) * 0.2;
+    if (!meshRef.current) return;
+    meshRef.current.lookAt(0, 0, 0);
+    meshRef.current.position.y = Math.sin(clock.elapsedTime * 0.6 + index) * 0.2;
   });
 
   return (
     <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.4}>
-      <group position={[x, 0, z]}>
-        <mesh ref={ref}>
+      <group ref={onRef} position={[x, 0, z]}>
+        <mesh ref={meshRef}>
           <planeGeometry args={[1.6, 2]} />
           <meshStandardMaterial
-            color={new THREE.Color().setHSL((index / total), 0.35, 0.35)}
+            color={new THREE.Color().setHSL(index / total, 0.35, 0.35)}
             roughness={0.4}
             metalness={0.1}
           />
@@ -54,11 +56,34 @@ function ArtworkCard({
 
 function Scene() {
   const groupRef = useRef<THREE.Group>(null);
+  const cardRefs = useRef<(THREE.Group | null)[]>([]);
+  const { camera } = useThree();
+  const worldPos = useRef(new THREE.Vector3()).current;
+  const targetScale = useRef(new THREE.Vector3()).current;
 
   useFrame((_, delta) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.08;
     }
+
+    let closestIndex = -1;
+    let closestDist = Infinity;
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+      el.getWorldPosition(worldPos);
+      const dist = worldPos.distanceTo(camera.position);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIndex = i;
+      }
+    });
+
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const scale = i === closestIndex ? 1.4 : 1;
+      targetScale.set(scale, scale, scale);
+      el.scale.lerp(targetScale, delta * 5);
+    });
   });
 
   return (
@@ -68,7 +93,15 @@ function Scene() {
       <Environment preset="city" />
       <group ref={groupRef}>
         {ARTWORKS.map((art, i) => (
-          <ArtworkCard key={art.id} index={i} total={ARTWORKS.length} title={art.title} />
+          <ArtworkCard
+            key={art.id}
+            index={i}
+            total={ARTWORKS.length}
+            title={art.title}
+            onRef={(el) => {
+              cardRefs.current[i] = el;
+            }}
+          />
         ))}
       </group>
     </>
