@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import SmoothScroll from "@/components/SmoothScroll";
 import MenuOverlay from "@/components/MenuOverlay";
 import MiniPlayer from "@/components/MiniPlayer";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import PageTransition from "@/components/PageTransition";
 import { PlayerProvider } from "@/lib/PlayerContext";
+import { LenisProvider } from "@/lib/LenisContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,9 +39,9 @@ export default function RootLayout({
           <Preloader />
           <CustomCursor />
           <MenuOverlay />
-          <SmoothScroll>
+          <LenisProvider>
             <PageTransition>{children}</PageTransition>
-          </SmoothScroll>
+          </LenisProvider>
           <MiniPlayer />
         </PlayerProvider>
       </body>

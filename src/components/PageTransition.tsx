@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "@/lib/LenisContext";
 
 const COVER_MS = 600;
 const HOLD_MS = 120;
@@ -10,6 +11,7 @@ const EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const lenis = useLenis();
   const prevPathname = useRef(pathname);
   const [displayed, setDisplayed] = useState(children);
   const [phase, setPhase] = useState<"idle" | "covering" | "revealing" | "resetting">("idle");
@@ -25,6 +27,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
     setPhase("covering");
 
     const t1 = setTimeout(() => {
+      lenis?.scrollTo(0, { immediate: true });
+      window.scrollTo(0, 0);
       setDisplayed(children);
       setPhase("revealing");
     }, COVER_MS + HOLD_MS);
