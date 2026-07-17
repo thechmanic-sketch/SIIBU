@@ -45,11 +45,8 @@ export default function ArtGallery() {
   }, [filter]);
 
   return (
-    <section id="gallery" className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
-      <span className="text-xs tracking-[0.4em] text-white/50 uppercase">05 — Art Gallery</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Paintings · Photography · Design</h2>
-
-      <div className="mt-8 flex gap-6">
+    <section className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+      <div className="flex gap-6">
         {FILTERS.map((f) => (
           <button
             key={f}

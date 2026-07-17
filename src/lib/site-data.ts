@@ -26,31 +26,63 @@ export function paletteFor(index: number) {
   return PALETTE[index % PALETTE.length];
 }
 
-export const SECTIONS = [
-  { id: "hero", number: "01", label: "Cinematic Hero" },
-  { id: "universe", number: "02", label: "Visual Universe" },
-  { id: "music", number: "03", label: "Music Experience" },
-  { id: "story", number: "04", label: "Story" },
-  { id: "gallery", number: "05", label: "Art Gallery" },
-  { id: "performances", number: "06", label: "Performances" },
-  { id: "shop", number: "07", label: "Shop" },
-  { id: "contact", number: "08", label: "Contact" },
+export const NAV_ITEMS = [
+  { href: "/music", number: "01", label: "Music Experience" },
+  { href: "/story", number: "02", label: "Story" },
+  { href: "/gallery", number: "03", label: "Art Gallery" },
+  { href: "/performances", number: "04", label: "Performances" },
+  { href: "/shop", number: "05", label: "Shop" },
+  { href: "/film", number: "06", label: "Filmography" },
+  { href: "/press", number: "07", label: "Press" },
+  { href: "/journal", number: "08", label: "Journal" },
+  { href: "/faq", number: "09", label: "FAQ" },
+  { href: "/contact", number: "10", label: "Contact" },
 ] as const;
 
-export const NAV_ITEMS = [
-  { href: "/#hero", number: "01", label: "Cinematic Hero" },
-  { href: "/#universe", number: "02", label: "Visual Universe" },
-  { href: "/#music", number: "03", label: "Music Experience" },
-  { href: "/#story", number: "04", label: "Story" },
-  { href: "/#gallery", number: "05", label: "Art Gallery" },
-  { href: "/#performances", number: "06", label: "Performances" },
-  { href: "/#shop", number: "07", label: "Shop" },
-  { href: "/film", number: "08", label: "Filmography" },
-  { href: "/press", number: "09", label: "Press" },
-  { href: "/journal", number: "10", label: "Journal" },
-  { href: "/faq", number: "11", label: "FAQ" },
-  { href: "/#contact", number: "12", label: "Contact" },
-] as const;
+export const PAGE_HEROES = {
+  music: {
+    eyebrow: "Music Experience",
+    title: "Discography",
+    subtitle: "Three studio albums, one continuous conversation with sound.",
+    palette: "from-violet-900 via-neutral-900 to-neutral-950",
+    align: "left" as const,
+  },
+  story: {
+    eyebrow: "Story",
+    title: "Biography",
+    subtitle: "A decade moving between screen, stage, and studio.",
+    palette: "from-neutral-800 via-neutral-900 to-black",
+    align: "left" as const,
+  },
+  gallery: {
+    eyebrow: "Art Gallery",
+    title: "Visual Work",
+    subtitle: "Paintings, photography, and design — the practice between takes.",
+    palette: "from-rose-900 via-neutral-900 to-neutral-950",
+    align: "center" as const,
+  },
+  performances: {
+    eyebrow: "Performances",
+    title: "Tours & Events",
+    subtitle: "On stage, on the road, city to city.",
+    palette: "from-amber-900 via-neutral-900 to-neutral-950",
+    align: "left" as const,
+  },
+  shop: {
+    eyebrow: "Shop",
+    title: "Merchandise",
+    subtitle: "Vinyl, apparel, and limited-run prints.",
+    palette: "from-emerald-900 via-neutral-900 to-neutral-950",
+    align: "left" as const,
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Get in Touch",
+    subtitle: "Booking, press, or just to say hello.",
+    palette: "from-sky-900 via-neutral-900 to-neutral-950",
+    align: "center" as const,
+  },
+} as const;
 
 export const FILMOGRAPHY = [
   { year: "2025", title: "Midnight Frequencies (Tour Film)", role: "Director / Lead", type: "Feature" },

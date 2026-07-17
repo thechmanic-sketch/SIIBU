@@ -80,11 +80,8 @@ export default function MusicExperience() {
   }
 
   return (
-    <section id="music" className="relative min-h-screen w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
-      <span className="text-xs tracking-[0.4em] text-white/50 uppercase">03 — Music Experience</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Discography</h2>
-
-      <div className="mt-12 flex gap-4">
+    <section className="relative min-h-screen w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+      <div className="flex gap-4">
         {ALBUMS.map((a, i) => (
           <button
             key={a.id}

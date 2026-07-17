@@ -8,11 +8,8 @@ export default function Shop() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="shop" className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
-      <span className="text-xs tracking-[0.4em] text-white/50 uppercase">07 — Shop</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Merchandise</h2>
-
-      <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+    <section className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
         {PRODUCTS.map((p, i) => (
           <motion.div
             key={p.id}

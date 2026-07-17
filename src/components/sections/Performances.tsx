@@ -8,11 +8,8 @@ export default function Performances() {
   const past = SHOWS.filter((s) => s.status === "past");
 
   return (
-    <section id="performances" className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
-      <span className="text-xs tracking-[0.4em] text-white/50 uppercase">06 — Performances</span>
-      <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Tours &amp; Events</h2>
-
-      <div className="mt-14">
+    <section className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
+      <div>
         <h3 className="text-sm uppercase tracking-widest text-white/40">Upcoming</h3>
         <div className="mt-4 flex flex-col">
           {upcoming.map((show, i) => (

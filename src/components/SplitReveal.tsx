@@ -9,7 +9,7 @@ export default function SplitReveal({
   className,
 }: {
   children: string;
-  as?: "h2" | "h3" | "p" | "div";
+  as?: "h1" | "h2" | "h3" | "p" | "div";
   className?: string;
 }) {
   const ref = useRef<HTMLElement>(null);
