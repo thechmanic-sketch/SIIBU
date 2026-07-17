@@ -5,6 +5,7 @@ import MenuOverlay from "@/components/MenuOverlay";
 import MiniPlayer from "@/components/MiniPlayer";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
+import PageTransition from "@/components/PageTransition";
 import { PlayerProvider } from "@/lib/PlayerContext";
 import "./globals.css";
 
@@ -38,7 +39,9 @@ export default function RootLayout({
           <Preloader />
           <CustomCursor />
           <MenuOverlay />
-          <SmoothScroll>{children}</SmoothScroll>
+          <SmoothScroll>
+            <PageTransition>{children}</PageTransition>
+          </SmoothScroll>
           <MiniPlayer />
         </PlayerProvider>
       </body>
