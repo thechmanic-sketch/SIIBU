@@ -11,6 +11,34 @@ export const SECTIONS = [
   { id: "contact", number: "08", label: "Contact" },
 ] as const;
 
+export const NAV_ITEMS = [
+  { href: "/#hero", number: "01", label: "Cinematic Hero" },
+  { href: "/#universe", number: "02", label: "Visual Universe" },
+  { href: "/#music", number: "03", label: "Music Experience" },
+  { href: "/#story", number: "04", label: "Story" },
+  { href: "/#gallery", number: "05", label: "Art Gallery" },
+  { href: "/#performances", number: "06", label: "Performances" },
+  { href: "/#shop", number: "07", label: "Shop" },
+  { href: "/film", number: "08", label: "Filmography" },
+  { href: "/press", number: "09", label: "Press" },
+  { href: "/#contact", number: "10", label: "Contact" },
+] as const;
+
+export const FILMOGRAPHY = [
+  { year: "2025", title: "Midnight Frequencies (Tour Film)", role: "Director / Lead", type: "Feature" },
+  { year: "2023", title: "Glass Horizon", role: "Lead — Mara", type: "Feature Film" },
+  { year: "2022", title: "Afterglow", role: "Supporting — Dex", type: "Feature Film" },
+  { year: "2021", title: "Static Bloom", role: "Lead — Iris", type: "Short Film" },
+  { year: "2020", title: "Halflight", role: "Supporting — Noel", type: "Feature Film" },
+] as const;
+
+export const PRESS_MENTIONS = [
+  { outlet: "Rolling Stone", quote: "A singular voice bridging screen and sound.", year: "2025" },
+  { outlet: "The Wrap", quote: "Glass Horizon's breakout performance.", year: "2023" },
+  { outlet: "Pitchfork", quote: "Midnight Frequencies is a genre-defying triumph.", year: "2025" },
+  { outlet: "Variety", quote: "One to watch across every medium.", year: "2022" },
+] as const;
+
 export const ALBUMS = [
   {
     id: "midnight-frequencies",
