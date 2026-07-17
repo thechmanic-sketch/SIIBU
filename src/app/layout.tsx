@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import MenuOverlay from "@/components/MenuOverlay";
+import MiniPlayer from "@/components/MiniPlayer";
+import { PlayerProvider } from "@/lib/PlayerContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,8 +32,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-black">
-        <MenuOverlay />
-        <SmoothScroll>{children}</SmoothScroll>
+        <PlayerProvider>
+          <MenuOverlay />
+          <SmoothScroll>{children}</SmoothScroll>
+          <MiniPlayer />
+        </PlayerProvider>
       </body>
     </html>
   );

@@ -1,83 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { usePlayer } from "@/lib/PlayerContext";
 import { ALBUMS, paletteFor } from "@/lib/site-data";
 
 export default function MusicExperience() {
   const [albumIndex, setAlbumIndex] = useState(0);
-  const [trackIndex, setTrackIndex] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const { albumIndex: playingAlbum, trackIndex: playingTrack, isPlaying, progress, playTrack } = usePlayer();
 
   const album = ALBUMS[albumIndex];
-
-  useEffect(() => {
-    audioRef.current = new Audio();
-    audioRef.current.crossOrigin = "anonymous";
-    const audio = audioRef.current;
-
-    const onTimeUpdate = () => {
-      if (audio.duration) setProgress(audio.currentTime / audio.duration);
-    };
-    const onEnded = () => setIsPlaying(false);
-
-    audio.addEventListener("timeupdate", onTimeUpdate);
-    audio.addEventListener("ended", onEnded);
-    return () => {
-      audio.removeEventListener("timeupdate", onTimeUpdate);
-      audio.removeEventListener("ended", onEnded);
-      audio.pause();
-    };
-  }, []);
-
-  function ensureAudioGraph() {
-    if (!audioRef.current) return;
-    if (!audioCtxRef.current) {
-      const AudioContextClass =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      audioCtxRef.current = new AudioContextClass();
-      sourceRef.current = audioCtxRef.current.createMediaElementSource(audioRef.current);
-      sourceRef.current.connect(audioCtxRef.current.destination);
-    }
-    audioCtxRef.current.resume();
-  }
-
-  function playTrack(index: number) {
-    const audio = audioRef.current;
-    if (!audio) return;
-    ensureAudioGraph();
-
-    if (trackIndex === index) {
-      if (isPlaying) {
-        audio.pause();
-        setIsPlaying(false);
-      } else {
-        audio.play();
-        setIsPlaying(true);
-      }
-      return;
-    }
-
-    audio.src = album.tracks[index].src;
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-    setTrackIndex(index);
-    setIsPlaying(true);
-  }
-
-  function selectAlbum(i: number) {
-    setAlbumIndex(i);
-    setTrackIndex(null);
-    setIsPlaying(false);
-    audioRef.current?.pause();
-    setProgress(0);
-  }
 
   return (
     <section className="relative min-h-screen w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
@@ -85,7 +17,7 @@ export default function MusicExperience() {
         {ALBUMS.map((a, i) => (
           <button
             key={a.id}
-            onClick={() => selectAlbum(i)}
+            onClick={() => setAlbumIndex(i)}
             className={`text-sm tracking-wide uppercase transition ${
               i === albumIndex ? "text-white" : "text-white/40 hover:text-white/70"
             }`}
@@ -106,11 +38,11 @@ export default function MusicExperience() {
 
         <div className="flex flex-col justify-center gap-1">
           {album.tracks.map((track, i) => {
-            const active = trackIndex === i;
+            const active = playingAlbum === albumIndex && playingTrack === i;
             return (
               <button
                 key={track.title}
-                onClick={() => playTrack(i)}
+                onClick={() => playTrack(albumIndex, i)}
                 className={`group flex items-center justify-between border-b border-white/10 py-4 text-left transition ${
                   active ? "text-white" : "text-white/60 hover:text-white"
                 }`}
