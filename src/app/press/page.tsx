@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PRESS_MENTIONS } from "@/lib/site-data";
+import { PAGE_INTROS, PRESS_MENTIONS } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Press | SIIBU",
@@ -16,6 +16,7 @@ export default function PressPage() {
 
       <span className="mt-10 block text-xs tracking-[0.4em] text-white/50 uppercase">Press</span>
       <h1 className="mt-2 text-4xl font-semibold sm:text-6xl">In the Press</h1>
+      <p className="mt-4 max-w-lg text-sm text-white/60 sm:text-base">{PAGE_INTROS.press}</p>
 
       <div className="mt-16 grid gap-8 sm:grid-cols-2">
         {PRESS_MENTIONS.map((mention) => (

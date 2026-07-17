@@ -1,5 +1,31 @@
 export const ARTIST_NAME = "SIIBU";
 
+export const BIO_SHORT =
+  "SIIBU moves between screen, stage, and studio — an actor and musician whose work traces the same thread through every medium: the space between control and vulnerability.";
+
+export const BIO_LONG =
+  "Raised between two coasts, SIIBU started performing before they could name what they were reaching for. A decade on, the throughline is unmistakable — restless, unhurried, always circling the same questions from a new angle. Feature films and short work sit alongside three studio albums and a growing body of visual art, each one a different way of asking the same thing.";
+
+export const PAGE_INTROS = {
+  film: "Selected screen work spanning feature films, shorts, and one very cold six weeks on the Atlantic coast.",
+  press: "A running record of what's been written, said, and occasionally misquoted.",
+  journal: "Unfiltered notes from the studio, the set, and everywhere in between.",
+  faq: "The questions that land most often — booking, licensing, and the rest.",
+} as const;
+
+const PALETTE = [
+  "from-rose-900 via-neutral-900 to-neutral-950",
+  "from-amber-900 via-neutral-900 to-neutral-950",
+  "from-sky-900 via-neutral-900 to-neutral-950",
+  "from-emerald-900 via-neutral-900 to-neutral-950",
+  "from-violet-900 via-neutral-900 to-neutral-950",
+  "from-orange-900 via-neutral-900 to-neutral-950",
+] as const;
+
+export function paletteFor(index: number) {
+  return PALETTE[index % PALETTE.length];
+}
+
 export const SECTIONS = [
   { id: "hero", number: "01", label: "Cinematic Hero" },
   { id: "universe", number: "02", label: "Visual Universe" },

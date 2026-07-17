@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { PRODUCTS } from "@/lib/site-data";
+import { PRODUCTS, paletteFor } from "@/lib/site-data";
 
 export default function Shop() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -30,7 +30,7 @@ export default function Shop() {
             }}
             className="cursor-pointer"
           >
-            <div className="aspect-square w-full rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900" />
+            <div className={`aspect-square w-full rounded-md bg-gradient-to-br ${paletteFor(i)}`} />
             <p className="mt-3 text-sm">{p.name}</p>
             <p className="text-sm text-white/50">{p.price}</p>
           </motion.div>

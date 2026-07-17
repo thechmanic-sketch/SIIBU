@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
-import { TIMELINE } from "@/lib/site-data";
+import { BIO_LONG, TIMELINE } from "@/lib/site-data";
 import SplitReveal from "@/components/SplitReveal";
 
 export default function Story() {
@@ -40,6 +40,10 @@ export default function Story() {
       <SplitReveal as="h2" className="mt-2 text-3xl font-semibold sm:text-5xl">
         Biography
       </SplitReveal>
+
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
+        {BIO_LONG}
+      </p>
 
       <div className="relative mt-16 max-w-2xl">
         <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/15" />

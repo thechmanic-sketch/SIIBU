@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FILMOGRAPHY } from "@/lib/site-data";
+import { FILMOGRAPHY, PAGE_INTROS } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Filmography | SIIBU",
@@ -16,6 +16,7 @@ export default function FilmPage() {
 
       <span className="mt-10 block text-xs tracking-[0.4em] text-white/50 uppercase">Filmography</span>
       <h1 className="mt-2 text-4xl font-semibold sm:text-6xl">Selected Credits</h1>
+      <p className="mt-4 max-w-lg text-sm text-white/60 sm:text-base">{PAGE_INTROS.film}</p>
 
       <div className="mt-16 flex flex-col">
         {FILMOGRAPHY.map((entry) => (

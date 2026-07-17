@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ALBUMS } from "@/lib/site-data";
+import { ALBUMS, paletteFor } from "@/lib/site-data";
 
 export default function MusicExperience() {
   const [albumIndex, setAlbumIndex] = useState(0);
@@ -104,7 +104,7 @@ export default function MusicExperience() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="aspect-square w-full rounded-lg bg-gradient-to-br from-neutral-800 to-neutral-900 shadow-2xl"
+          className={`aspect-square w-full rounded-lg bg-gradient-to-br shadow-2xl ${paletteFor(albumIndex)}`}
         />
 
         <div className="flex flex-col justify-center gap-1">

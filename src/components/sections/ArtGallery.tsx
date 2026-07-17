@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap, EXPO_OUT } from "@/lib/gsap";
-import { ARTWORKS } from "@/lib/site-data";
+import { ARTWORKS, paletteFor } from "@/lib/site-data";
 
 const FILTERS = ["all", "painting", "photography", "design"] as const;
 type Filter = (typeof FILTERS)[number];
@@ -69,7 +69,7 @@ export default function ArtGallery() {
         className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3"
       >
         <AnimatePresence>
-          {items.map((art) => (
+          {items.map((art, i) => (
             <motion.button
               key={art.id}
               layout
@@ -85,9 +85,12 @@ export default function ArtGallery() {
                     : "scale(1) rotate(0deg)",
                 opacity: hovered !== null && hovered !== art.id ? 0.4 : 1,
               }}
-              className="gallery-card group relative aspect-[4/5] overflow-hidden rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900"
+              className={`gallery-card group relative aspect-[4/5] overflow-hidden rounded-md bg-gradient-to-br ${paletteFor(i)}`}
             >
-              <span className="absolute bottom-3 left-3 text-xs tracking-wide text-white/70 opacity-0 transition group-hover:opacity-100">
+              <span className="absolute left-3 top-3 text-[10px] uppercase tracking-widest text-white/40">
+                {art.category}
+              </span>
+              <span className="absolute bottom-3 left-3 text-xs tracking-wide text-white/80 opacity-0 transition group-hover:opacity-100">
                 {art.title}
               </span>
             </motion.button>
@@ -108,10 +111,13 @@ export default function ArtGallery() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="max-h-[80vh] w-full max-w-2xl rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900 p-1"
+              className="max-h-[80vh] w-full max-w-2xl rounded-md bg-neutral-900 p-1"
             >
-              <div className="aspect-[4/5] w-full rounded-sm bg-neutral-900" />
-              <p className="p-4 text-sm text-white/70">{active.title}</p>
+              <div className={`aspect-[4/5] w-full rounded-sm bg-gradient-to-br ${paletteFor(ARTWORKS.indexOf(active))}`} />
+              <div className="p-4">
+                <p className="text-sm text-white/90">{active.title}</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-white/40">{active.category}</p>
+              </div>
             </motion.div>
           </motion.div>
         )}
