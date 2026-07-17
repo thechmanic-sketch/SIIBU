@@ -14,12 +14,12 @@ export const PAGE_INTROS = {
 } as const;
 
 const PALETTE = [
-  "from-rose-900 via-neutral-900 to-neutral-950",
-  "from-amber-900 via-neutral-900 to-neutral-950",
-  "from-sky-900 via-neutral-900 to-neutral-950",
-  "from-emerald-900 via-neutral-900 to-neutral-950",
-  "from-violet-900 via-neutral-900 to-neutral-950",
-  "from-orange-900 via-neutral-900 to-neutral-950",
+  "from-terracotta via-umber-2 to-ink",
+  "from-ochre via-clay to-ink",
+  "from-clay via-umber-2 to-ink",
+  "from-olive via-umber-2 to-ink",
+  "from-umber-2 via-clay to-ink",
+  "from-ochre via-terracotta to-clay",
 ] as const;
 
 export function paletteFor(index: number) {
@@ -55,42 +55,42 @@ export const PAGE_HEROES = {
     eyebrow: "Music Experience",
     title: "Discography",
     subtitle: "Three studio albums, one continuous conversation with sound.",
-    palette: "from-violet-900 via-neutral-900 to-neutral-950",
+    palette: "from-clay via-umber-2 to-ink",
     align: "left" as const,
   },
   story: {
     eyebrow: "Story",
     title: "Biography",
     subtitle: "A decade moving between screen, stage, and studio.",
-    palette: "from-neutral-800 via-neutral-900 to-black",
+    palette: "from-umber-2 via-umber to-ink",
     align: "left" as const,
   },
   gallery: {
     eyebrow: "Art Gallery",
     title: "Visual Work",
     subtitle: "Paintings, photography, and design — the practice between takes.",
-    palette: "from-rose-900 via-neutral-900 to-neutral-950",
+    palette: "from-clay via-umber-2 to-ink",
     align: "center" as const,
   },
   performances: {
     eyebrow: "Performances",
     title: "Tours & Events",
     subtitle: "On stage, on the road, city to city.",
-    palette: "from-amber-900 via-neutral-900 to-neutral-950",
+    palette: "from-ochre via-clay to-ink",
     align: "left" as const,
   },
   shop: {
     eyebrow: "Shop",
     title: "Merchandise",
     subtitle: "Vinyl, apparel, and limited-run prints.",
-    palette: "from-emerald-900 via-neutral-900 to-neutral-950",
+    palette: "from-olive via-umber-2 to-ink",
     align: "left" as const,
   },
   contact: {
     eyebrow: "Contact",
     title: "Get in Touch",
     subtitle: "Booking, press, or just to say hello.",
-    palette: "from-sky-900 via-neutral-900 to-neutral-950",
+    palette: "from-ink via-umber to-umber-2",
     align: "center" as const,
   },
 } as const;

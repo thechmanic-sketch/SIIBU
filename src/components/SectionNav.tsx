@@ -34,15 +34,15 @@ export default function SectionNav() {
           className="group flex items-center justify-end gap-3"
         >
           <span
-            className={`whitespace-nowrap text-xs tracking-widest text-white/0 transition group-hover:text-white/70 ${
-              active === s.id ? "text-white/70" : ""
+            className={`whitespace-nowrap text-xs tracking-widest text-sand/0 transition group-hover:text-sand/70 ${
+              active === s.id ? "text-sand/70" : ""
             }`}
           >
             {s.number}
           </span>
           <span
-            className={`h-1.5 w-1.5 rounded-full border border-white/50 transition ${
-              active === s.id ? "bg-white scale-125" : "bg-transparent"
+            className={`h-1.5 w-1.5 rounded-full border border-sand/50 transition ${
+              active === s.id ? "bg-ochre scale-125" : "bg-transparent"
             }`}
           />
         </a>

@@ -63,14 +63,14 @@ export default function MenuOverlay() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] flex flex-col justify-between bg-black px-6 py-8 text-white sm:px-16 sm:py-12"
+            className="fixed inset-0 z-[60] flex flex-col justify-between bg-ink px-6 py-8 text-sand sm:px-16 sm:py-12"
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm tracking-[0.3em] uppercase text-white/60">{ARTIST_NAME}</span>
+              <span className="text-sm tracking-[0.3em] uppercase text-sand/60">{ARTIST_NAME}</span>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
-                className="text-xs tracking-[0.3em] uppercase text-white/80"
+                className="text-xs tracking-[0.3em] uppercase text-sand/80"
               >
                 Close ✕
               </button>
@@ -82,10 +82,10 @@ export default function MenuOverlay() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="menu-item group flex items-baseline gap-6 border-b border-white/10 py-4 sm:py-5"
+                    className="menu-item group flex items-baseline gap-6 border-b border-sand/10 py-4 sm:py-5"
                   >
-                    <span className="text-xs text-white/40">{item.number}</span>
-                    <span className="text-3xl font-medium transition-transform duration-300 group-hover:translate-x-2 sm:text-5xl">
+                    <span className="text-xs text-ochre/70">{item.number}</span>
+                    <span className="text-3xl font-medium transition-transform duration-300 group-hover:translate-x-2 group-hover:text-ochre sm:text-5xl">
                       {item.label}
                     </span>
                   </Link>
@@ -93,10 +93,10 @@ export default function MenuOverlay() {
               ))}
             </ul>
 
-            <div className="flex gap-6 text-xs tracking-widest text-white/50 uppercase">
-              <a href="#" className="hover:text-white">Instagram</a>
-              <a href="#" className="hover:text-white">Spotify</a>
-              <a href="#" className="hover:text-white">YouTube</a>
+            <div className="flex gap-6 text-xs tracking-widest text-sand/50 uppercase">
+              <a href="#" className="hover:text-ochre">Instagram</a>
+              <a href="#" className="hover:text-ochre">Spotify</a>
+              <a href="#" className="hover:text-ochre">YouTube</a>
             </div>
           </motion.div>
         )}

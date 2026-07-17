@@ -9,10 +9,10 @@ export default function Shop({ showHeading = true }: { showHeading?: boolean }) 
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="shop" className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+    <section id="shop" className="relative w-full bg-umber-2 px-6 py-24 text-sand sm:px-16">
       {showHeading && (
         <>
-          <span className="text-xs tracking-[0.4em] text-white/50 uppercase">07 — Shop</span>
+          <span className="text-xs tracking-[0.4em] text-ochre uppercase">07 — Shop</span>
           <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Merchandise</h2>
         </>
       )}
@@ -43,7 +43,7 @@ export default function Shop({ showHeading = true }: { showHeading?: boolean }) 
               />
             </div>
             <p className="mt-3 text-sm">{p.name}</p>
-            <p className="text-sm text-white/50">{p.price}</p>
+            <p className="text-sm text-sand/50">{p.price}</p>
           </motion.div>
         ))}
       </div>

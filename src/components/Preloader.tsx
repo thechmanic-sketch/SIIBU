@@ -36,7 +36,7 @@ export default function Preloader() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black transition-opacity ease-out"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-ink transition-opacity ease-out"
       style={{
         opacity: phase === "fading" ? 0 : 1,
         transitionDuration: `${FADE_MS}ms`,
@@ -59,9 +59,9 @@ export default function Preloader() {
             fontWeight: 700,
             fontSize: "112px",
             letterSpacing: "0.02em",
-            fill: filled ? "white" : "transparent",
+            fill: filled ? "#D19A3E" : "transparent",
             fillOpacity: filled ? 1 : 0,
-            stroke: "white",
+            stroke: "#E7D6B4",
             strokeWidth: 1.5,
             transition: `fill-opacity ${FILL_MS}ms ease-out`,
             animationDuration: `${DRAW_MS}ms`,

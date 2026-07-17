@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <main className="min-h-screen w-full bg-black px-6 py-24 text-white sm:px-16">
-      <Link href="/" className="text-xs tracking-[0.3em] text-white/50 uppercase hover:text-white">
+    <main className="min-h-screen w-full bg-ink px-6 py-24 text-sand sm:px-16">
+      <Link href="/" className="text-xs tracking-[0.3em] text-sand/50 uppercase hover:text-ochre">
         ← Back
       </Link>
 
-      <span className="mt-10 block text-xs tracking-[0.4em] text-white/50 uppercase">FAQ</span>
+      <span className="mt-10 block text-xs tracking-[0.4em] text-ochre uppercase">FAQ</span>
       <h1 className="mt-2 text-4xl font-semibold sm:text-6xl">Frequently Asked</h1>
-      <p className="mt-4 max-w-lg text-sm text-white/60 sm:text-base">{PAGE_INTROS.faq}</p>
+      <p className="mt-4 max-w-lg text-sm text-sand/60 sm:text-base">{PAGE_INTROS.faq}</p>
 
       <FaqAccordion />
     </main>

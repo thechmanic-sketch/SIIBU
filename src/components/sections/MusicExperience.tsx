@@ -13,10 +13,10 @@ export default function MusicExperience({ showHeading = true }: { showHeading?: 
   const album = ALBUMS[albumIndex];
 
   return (
-    <section id="music" className="relative min-h-screen w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+    <section id="music" className="relative min-h-screen w-full bg-umber-2 px-6 py-24 text-sand sm:px-16">
       {showHeading && (
         <>
-          <span className="text-xs tracking-[0.4em] text-white/50 uppercase">03 — Music Experience</span>
+          <span className="text-xs tracking-[0.4em] text-ochre uppercase">03 — Music Experience</span>
           <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Discography</h2>
         </>
       )}
@@ -27,7 +27,7 @@ export default function MusicExperience({ showHeading = true }: { showHeading?: 
             key={a.id}
             onClick={() => setAlbumIndex(i)}
             className={`text-sm tracking-wide uppercase transition ${
-              i === albumIndex ? "text-white" : "text-white/40 hover:text-white/70"
+              i === albumIndex ? "text-ochre" : "text-sand/40 hover:text-sand/70"
             }`}
           >
             {a.title}
@@ -57,26 +57,26 @@ export default function MusicExperience({ showHeading = true }: { showHeading?: 
               <button
                 key={track.title}
                 onClick={() => playTrack(albumIndex, i)}
-                className={`group flex items-center justify-between border-b border-white/10 py-4 text-left transition ${
-                  active ? "text-white" : "text-white/60 hover:text-white"
+                className={`group flex items-center justify-between border-b border-sand/10 py-4 text-left transition ${
+                  active ? "text-ochre" : "text-sand/60 hover:text-sand"
                 }`}
               >
                 <span className="flex items-center gap-4">
-                  <span className="w-5 text-xs text-white/40">
+                  <span className="w-5 text-xs text-sand/40">
                     {active && isPlaying ? "❚❚" : "▶"}
                   </span>
                   <span>{track.title}</span>
                 </span>
                 <span className="flex items-center gap-4">
                   {active && (
-                    <span className="h-px w-24 overflow-hidden bg-white/15">
+                    <span className="h-px w-24 overflow-hidden bg-sand/15">
                       <span
-                        className="block h-full bg-white transition-[width]"
+                        className="block h-full bg-ochre transition-[width]"
                         style={{ width: `${progress * 100}%` }}
                       />
                     </span>
                   )}
-                  <span className="text-xs text-white/40">{track.duration}</span>
+                  <span className="text-xs text-sand/40">{track.duration}</span>
                 </span>
               </button>
             );

@@ -48,7 +48,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="relative h-screen w-full overflow-hidden bg-umber"
     >
       <video
         ref={videoRef}
@@ -59,14 +59,14 @@ export default function Hero() {
         muted
         playsInline
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink" />
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 text-center">
-        <span className="mb-6 text-xs tracking-[0.4em] text-white/60 uppercase">
+        <span className="mb-6 text-xs tracking-[0.4em] text-ochre uppercase">
           Artist · Actor · Musician
         </span>
 
-        <h1 className="flex flex-wrap justify-center text-6xl font-bold tracking-tight text-white sm:text-8xl md:text-9xl">
+        <h1 className="flex flex-wrap justify-center text-6xl font-bold tracking-tight text-sand sm:text-8xl md:text-9xl">
           {letters.map((letter, i) => (
             <motion.span
               key={i}
@@ -88,7 +88,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 0.8 }}
-          className="mt-6 max-w-md text-sm text-white/70"
+          className="mt-6 max-w-md text-sm text-sand/70"
         >
           A cinematic universe of sound, story, and visual art.
         </motion.p>
@@ -97,7 +97,7 @@ export default function Hero() {
       <button
         onClick={toggleSound}
         aria-label={muted ? "Unmute background video" : "Mute background video"}
-        className="absolute bottom-8 right-8 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 text-white/80 backdrop-blur-sm transition hover:border-white hover:text-white"
+        className="absolute bottom-8 right-8 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-sand/30 text-sand/80 backdrop-blur-sm transition hover:border-ochre hover:text-ochre"
       >
         {muted ? (
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -118,7 +118,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-xs tracking-[0.3em] text-white/50 uppercase"
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 text-xs tracking-[0.3em] text-sand/50 uppercase"
       >
         Scroll
       </motion.div>

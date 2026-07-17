@@ -35,22 +35,22 @@ export default function Story({ showHeading = true }: { showHeading?: boolean })
   }, []);
 
   return (
-    <section id="story" ref={containerRef} className="relative w-full bg-black px-6 py-24 text-white sm:px-16">
+    <section id="story" ref={containerRef} className="relative w-full bg-ink px-6 py-24 text-sand sm:px-16">
       {showHeading && (
         <>
-          <span className="text-xs tracking-[0.4em] text-white/50 uppercase">04 — Story</span>
+          <span className="text-xs tracking-[0.4em] text-ochre uppercase">04 — Story</span>
           <SplitReveal as="h2" className="mt-2 text-3xl font-semibold sm:text-5xl">
             Biography
           </SplitReveal>
         </>
       )}
 
-      <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-sand/60 sm:text-base">
         {BIO_LONG}
       </p>
 
       <div className="relative mt-16 max-w-2xl">
-        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/15" />
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-sand/15" />
         <div className="flex flex-col gap-14">
           {TIMELINE.map((item, i) => (
             <div
@@ -60,10 +60,10 @@ export default function Story({ showHeading = true }: { showHeading?: boolean })
               }}
               className="relative pl-10"
             >
-              <span className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-black" />
-              <span className="text-sm tracking-widest text-white/40">{item.year}</span>
+              <span className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-ochre bg-ink" />
+              <span className="text-sm tracking-widest text-sand/40">{item.year}</span>
               <h3 className="mt-1 text-xl font-medium sm:text-2xl">{item.title}</h3>
-              <p className="mt-2 max-w-md text-sm text-white/60">{item.copy}</p>
+              <p className="mt-2 max-w-md text-sm text-sand/60">{item.copy}</p>
             </div>
           ))}
         </div>

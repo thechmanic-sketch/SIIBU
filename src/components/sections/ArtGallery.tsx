@@ -46,10 +46,10 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
   }, [filter]);
 
   return (
-    <section id="gallery" className="relative w-full bg-neutral-950 px-6 py-24 text-white sm:px-16">
+    <section id="gallery" className="relative w-full bg-umber-2 px-6 py-24 text-sand sm:px-16">
       {showHeading && (
         <>
-          <span className="text-xs tracking-[0.4em] text-white/50 uppercase">05 — Art Gallery</span>
+          <span className="text-xs tracking-[0.4em] text-ochre uppercase">05 — Art Gallery</span>
           <h2 className="mt-2 text-3xl font-semibold sm:text-5xl">Paintings · Photography · Design</h2>
         </>
       )}
@@ -60,7 +60,7 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
             key={f}
             onClick={() => setFilter(f)}
             className={`text-sm uppercase tracking-wide transition ${
-              filter === f ? "text-white" : "text-white/40 hover:text-white/70"
+              filter === f ? "text-ochre" : "text-sand/40 hover:text-sand/70"
             }`}
           >
             {f}
@@ -97,10 +97,10 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
                 alt={art.title}
                 fallbackClassName={`h-full w-full bg-gradient-to-br ${paletteFor(i)}`}
               />
-              <span className="absolute left-3 top-3 text-[10px] uppercase tracking-widest text-white/40">
+              <span className="absolute left-3 top-3 text-[10px] uppercase tracking-widest text-sand/40">
                 {art.category}
               </span>
-              <span className="absolute bottom-3 left-3 text-xs tracking-wide text-white/80 opacity-0 transition group-hover:opacity-100">
+              <span className="absolute bottom-3 left-3 text-xs tracking-wide text-sand/80 opacity-0 transition group-hover:opacity-100">
                 {art.title}
               </span>
             </motion.button>
@@ -115,13 +115,13 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelected(null)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-6"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="max-h-[80vh] w-full max-w-2xl rounded-md bg-neutral-900 p-1"
+              className="max-h-[80vh] w-full max-w-2xl rounded-md bg-umber p-1"
             >
               <div className="aspect-[4/5] w-full overflow-hidden rounded-sm">
                 <MediaImage
@@ -131,8 +131,8 @@ export default function ArtGallery({ showHeading = true }: { showHeading?: boole
                 />
               </div>
               <div className="p-4">
-                <p className="text-sm text-white/90">{active.title}</p>
-                <p className="mt-1 text-xs uppercase tracking-widest text-white/40">{active.category}</p>
+                <p className="text-sm text-sand/90">{active.title}</p>
+                <p className="mt-1 text-xs uppercase tracking-widest text-sand/40">{active.category}</p>
               </div>
             </motion.div>
           </motion.div>

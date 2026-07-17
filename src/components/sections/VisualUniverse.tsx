@@ -33,7 +33,7 @@ function ArtworkCard({
         <mesh ref={meshRef}>
           <planeGeometry args={[1.6, 2]} />
           <meshStandardMaterial
-            color={new THREE.Color().setHSL(index / total, 0.35, 0.35)}
+            color={new THREE.Color().setHSL(0.06 + (index / total) * 0.08, 0.55, 0.32)}
             roughness={0.4}
             metalness={0.1}
             side={THREE.DoubleSide}
@@ -99,10 +99,10 @@ function Scene() {
 
 export default function VisualUniverse() {
   return (
-    <section id="universe" className="relative h-screen w-full bg-neutral-950">
+    <section id="universe" className="relative h-screen w-full bg-umber-2">
       <div className="absolute left-8 top-8 z-10">
-        <span className="text-xs tracking-[0.4em] text-white/50 uppercase">02 — Visual Universe</span>
-        <h2 className="mt-2 text-3xl font-semibold text-white sm:text-5xl">
+        <span className="text-xs tracking-[0.4em] text-ochre uppercase">02 — Visual Universe</span>
+        <h2 className="mt-2 text-3xl font-semibold text-sand sm:text-5xl">
           A gallery in orbit
         </h2>
       </div>
@@ -114,7 +114,7 @@ export default function VisualUniverse() {
         <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
       </Canvas>
 
-      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs tracking-[0.3em] text-white/40 uppercase">
+      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs tracking-[0.3em] text-sand/40 uppercase">
         Drag to look around
       </div>
     </section>
