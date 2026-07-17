@@ -6,6 +6,8 @@ Built with Next.js, Tailwind CSS, Three.js / React Three Fiber, GSAP + ScrollTri
 
 ## Sections
 
+Homepage (single scroll):
+
 01. Cinematic Hero — name reveal, video background, sound toggle
 02. Visual Universe — 3D artwork gallery
 03. Music Experience — interactive album player
@@ -14,6 +16,13 @@ Built with Next.js, Tailwind CSS, Three.js / React Three Fiber, GSAP + ScrollTri
 06. Performances — tours & events
 07. Shop — merchandise
 08. Contact
+
+Routed pages:
+
+- `/film` — Filmography, selected screen credits
+- `/press` — Press mentions and media contact
+
+A fullscreen menu (top-right) links all sections and pages from anywhere on the site.
 
 ## Getting Started
 
