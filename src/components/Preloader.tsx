@@ -3,30 +3,36 @@
 import { useEffect, useState } from "react";
 import { ARTIST_NAME } from "@/lib/site-data";
 
-const SWEEP_MS = 1400;
-const HOLD_MS = 300;
-const FADE_MS = 600;
+const DRAW_MS = 2600;
+const FILL_MS = 900;
+const HOLD_MS = 500;
+const FADE_MS = 800;
 
 export default function Preloader() {
-  const [phase, setPhase] = useState<"sweeping" | "fading" | "done">("sweeping");
+  const [phase, setPhase] = useState<"drawing" | "filling" | "holding" | "fading" | "done">(
+    "drawing"
+  );
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
-    const fadeTimer = setTimeout(() => setPhase("fading"), SWEEP_MS + HOLD_MS);
-    const doneTimer = setTimeout(() => {
+    const t1 = setTimeout(() => setPhase("filling"), DRAW_MS);
+    const t2 = setTimeout(() => setPhase("holding"), DRAW_MS + FILL_MS);
+    const t3 = setTimeout(() => setPhase("fading"), DRAW_MS + FILL_MS + HOLD_MS);
+    const t4 = setTimeout(() => {
       setPhase("done");
       document.body.style.overflow = "";
-    }, SWEEP_MS + HOLD_MS + FADE_MS);
+    }, DRAW_MS + FILL_MS + HOLD_MS + FADE_MS);
 
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(doneTimer);
+      [t1, t2, t3, t4].forEach(clearTimeout);
       document.body.style.overflow = "";
     };
   }, []);
 
   if (phase === "done") return null;
+
+  const filled = phase === "filling" || phase === "holding" || phase === "fading";
 
   return (
     <div
@@ -37,21 +43,33 @@ export default function Preloader() {
         pointerEvents: phase === "fading" ? "none" : "auto",
       }}
     >
-      <div className="relative inline-block">
-        <span className="block select-none text-6xl font-bold tracking-tight text-white/10 sm:text-8xl">
-          {ARTIST_NAME}
-        </span>
-        <span
-          className="preloader-sweep-text absolute inset-0 block select-none overflow-hidden whitespace-nowrap text-6xl font-bold tracking-tight text-white sm:text-8xl"
-          style={{ animationDuration: `${SWEEP_MS}ms` }}
+      <svg
+        viewBox="0 0 600 140"
+        className="w-64 sm:w-[420px]"
+        aria-label={ARTIST_NAME}
+      >
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="central"
+          className="preloader-draw-text"
+          style={{
+            fontFamily: "var(--font-geist-sans), sans-serif",
+            fontWeight: 700,
+            fontSize: "112px",
+            letterSpacing: "0.02em",
+            fill: filled ? "white" : "transparent",
+            fillOpacity: filled ? 1 : 0,
+            stroke: "white",
+            strokeWidth: 1.5,
+            transition: `fill-opacity ${FILL_MS}ms ease-out`,
+            animationDuration: `${DRAW_MS}ms`,
+          }}
         >
           {ARTIST_NAME}
-        </span>
-        <span
-          className="preloader-sweep-glow pointer-events-none absolute top-0 h-full w-24 sm:w-32"
-          style={{ animationDuration: `${SWEEP_MS}ms` }}
-        />
-      </div>
+        </text>
+      </svg>
     </div>
   );
 }
