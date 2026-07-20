@@ -31,3 +31,19 @@ body.cursor-none,
 body.cursor-none * {
   cursor: none !important;
 }
+
+@keyframes preloader-draw-stroke {
+  0% {
+    stroke-dashoffset: 2400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.preloader-draw-text {
+  stroke-dasharray: 2400;
+  animation-name: preloader-draw-stroke;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
+}
