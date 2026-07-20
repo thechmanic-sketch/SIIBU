@@ -213,6 +213,16 @@ export const TIMELINE = [
   { year: "2025", title: "Midnight Frequencies", copy: "Third studio album paired with a world tour." },
 ] as const;
 
+export const HEADSHOTS = [
+  "/headshots/headshot-01.jpg",
+  "/headshots/headshot-02.jpg",
+  "/headshots/headshot-03.jpg",
+  "/headshots/headshot-04.jpg",
+  "/headshots/headshot-05.jpg",
+  "/headshots/headshot-06.jpg",
+  "/headshots/headshot-07.jpg",
+] as const;
+
 export const ARTWORKS = [
   { id: 1, title: "Afterglow I", category: "painting", image: "/art/afterglow-i.jpg" },
   { id: 2, title: "Static Bloom", category: "photography", image: "/art/static-bloom.jpg" },

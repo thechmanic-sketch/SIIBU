@@ -2,17 +2,19 @@
 
 import { Suspense, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Float, OrbitControls } from "@react-three/drei";
+import { Environment, Float, OrbitControls, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import { ARTWORKS } from "@/lib/site-data";
+import { HEADSHOTS } from "@/lib/site-data";
 
 function ArtworkCard({
   index,
   total,
+  texture,
   onRef,
 }: {
   index: number;
   total: number;
+  texture: THREE.Texture;
   onRef: (el: THREE.Group | null) => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -31,11 +33,11 @@ function ArtworkCard({
     <Float speed={1.2} rotationIntensity={0.15} floatIntensity={0.4}>
       <group ref={onRef} position={[x, 0, z]}>
         <mesh ref={meshRef}>
-          <planeGeometry args={[1.6, 2]} />
+          <planeGeometry args={[1.6, 2.4]} />
           <meshStandardMaterial
-            color={new THREE.Color().setHSL(0.06 + (index / total) * 0.08, 0.55, 0.32)}
-            roughness={0.4}
-            metalness={0.1}
+            map={texture}
+            roughness={0.5}
+            metalness={0.05}
             side={THREE.DoubleSide}
           />
         </mesh>
@@ -50,6 +52,11 @@ function Scene() {
   const { camera } = useThree();
   const worldPos = useRef(new THREE.Vector3()).current;
   const targetScale = useRef(new THREE.Vector3()).current;
+
+  const textures = useTexture([...HEADSHOTS]);
+  textures.forEach((t) => {
+    t.colorSpace = THREE.SRGBColorSpace;
+  });
 
   useFrame((_, delta) => {
     if (groupRef.current) {
@@ -78,15 +85,16 @@ function Scene() {
 
   return (
     <>
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={0.7} />
       <pointLight position={[5, 5, 5]} intensity={40} />
       <Environment preset="city" />
       <group ref={groupRef}>
-        {ARTWORKS.map((art, i) => (
+        {HEADSHOTS.map((src, i) => (
           <ArtworkCard
-            key={art.id}
+            key={src}
             index={i}
-            total={ARTWORKS.length}
+            total={HEADSHOTS.length}
+            texture={textures[i]}
             onRef={(el) => {
               cardRefs.current[i] = el;
             }}
