@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { assetPath } from "@/lib/assetPath";
 
 export default function MediaImage({
   src,
@@ -22,7 +23,7 @@ export default function MediaImage({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={src}
+      src={assetPath(src)}
       alt={alt}
       onError={() => setErrored(true)}
       className={`h-full w-full object-cover ${className}`}

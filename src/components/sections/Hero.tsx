@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import { ARTIST_NAME } from "@/lib/site-data";
+import { assetPath } from "@/lib/assetPath";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,8 +54,8 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-[-10%] h-[120%] w-full object-cover opacity-60"
-        src="/video/hero-loop.mp4"
-        poster="/hero/hero-live.jpg"
+        src={assetPath("/video/hero-loop.mp4")}
+        poster={assetPath("/hero/hero-live.jpg")}
         autoPlay
         loop
         muted

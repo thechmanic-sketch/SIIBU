@@ -5,6 +5,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Float, OrbitControls, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { HEADSHOTS } from "@/lib/site-data";
+import { assetPath } from "@/lib/assetPath";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 function ArtworkCard({
   index,
@@ -53,7 +55,7 @@ function Scene() {
   const worldPos = useRef(new THREE.Vector3()).current;
   const targetScale = useRef(new THREE.Vector3()).current;
 
-  const textures = useTexture([...HEADSHOTS]);
+  const textures = useTexture(HEADSHOTS.map(assetPath));
   textures.forEach((t) => {
     t.colorSpace = THREE.SRGBColorSpace;
   });
@@ -115,12 +117,14 @@ export default function VisualUniverse() {
         </h2>
       </div>
 
-      <Canvas camera={{ position: [0, 0.5, 9], fov: 50 }}>
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-        <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
-      </Canvas>
+      <ErrorBoundary fallback={<div className="h-full w-full bg-umber-2" />}>
+        <Canvas camera={{ position: [0, 0.5, 9], fov: 50 }}>
+          <Suspense fallback={null}>
+            <Scene />
+          </Suspense>
+          <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
+        </Canvas>
+      </ErrorBoundary>
 
       <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-xs tracking-[0.3em] text-sand/40 uppercase">
         Drag to look around
