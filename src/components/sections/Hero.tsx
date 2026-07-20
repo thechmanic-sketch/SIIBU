@@ -54,6 +54,7 @@ export default function Hero() {
         ref={videoRef}
         className="absolute inset-[-10%] h-[120%] w-full object-cover opacity-60"
         src="/video/hero-loop.mp4"
+        poster="/headshots/headshot-07.jpg"
         autoPlay
         loop
         muted
